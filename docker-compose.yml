@@ -1,0 +1,15 @@
+services:
+  phonewords:
+    image: ghcr.io/tony1704/phonewords:latest
+    container_name: phonewords
+    restart: unless-stopped
+    # Ohne Reverse Proxy: Port freigeben und das "networks"-Stück weglassen.
+    # ports:
+    #   - "8080:80"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+    name: apps_proxy

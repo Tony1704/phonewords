@@ -1,0 +1,182 @@
+:root {
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --text: #1d1d1f;
+  --muted: #6e6e73;
+  --border: #dedad2;
+  --accent: #0a7c66;
+  --accent-soft: #d9efe9;
+  --mark: #ffe7a3;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141416;
+    --surface: #1e1e21;
+    --text: #f2f2f4;
+    --muted: #9a9aa2;
+    --border: #34343a;
+    --accent: #3fc9a8;
+    --accent-soft: #19362f;
+    --mark: #5a4a12;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 16px 32px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.6rem;
+  letter-spacing: -0.03em;
+}
+h1 span { color: var(--accent); }
+
+.lead { color: var(--muted); margin: 4px 0 28px; }
+code { font-family: var(--mono); font-size: 0.92em; }
+
+h2 { font-size: 1.15rem; margin: 36px 0 2px; }
+.hint { color: var(--muted); font-size: 0.9rem; margin: 0 0 12px; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+#number {
+  width: 100%;
+  padding: 16px 18px;
+  font: 600 1.6rem var(--mono);
+  letter-spacing: 0.04em;
+  color: var(--text);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  outline: none;
+}
+#number:focus { border-color: var(--accent); }
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.seg {
+  display: inline-flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 3px;
+}
+.seg button {
+  font: inherit;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  padding: 6px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.seg button[aria-pressed="true"] {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.minlen { color: var(--muted); font-size: 0.95rem; }
+.minlen select {
+  font: inherit;
+  margin-left: 6px;
+  padding: 4px 8px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.status { color: var(--muted); min-height: 1.5em; margin: 20px 0 0; }
+
+.combos, .words { list-style: none; padding: 0; margin: 0; }
+
+.combos li {
+  font: 1.15rem var(--mono);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+.combos .w { color: var(--accent); font-weight: 700; }
+.combos .d { color: var(--muted); }
+.combos .sep { color: var(--muted); opacity: 0.6; margin: 0 2px; }
+
+.words {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+}
+.words li {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+}
+.words strong { font-size: 1.05rem; letter-spacing: 0.02em; }
+.words .ctx { font: 0.85rem var(--mono); color: var(--muted); overflow-wrap: anywhere; }
+.words mark { background: var(--mark); color: var(--text); border-radius: 3px; padding: 0 1px; }
+
+.keypad-help {
+  margin-top: 40px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+.keypad-help summary { cursor: pointer; font-weight: 600; }
+.keypad-help p { color: var(--muted); font-size: 0.95rem; }
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 64px);
+  gap: 8px;
+  justify-content: center;
+  margin: 8px 0 6px;
+}
+.keypad div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+.keypad b { font-size: 1.2rem; line-height: 1.1; }
+.keypad small { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; }
+
+footer {
+  margin-top: 32px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-align: center;
+}
+footer a { color: inherit; }

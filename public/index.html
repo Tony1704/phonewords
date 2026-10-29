@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phonewords</title>
+  <meta name="description" content="Finde Wörter in deiner Telefonnummer – über die T9-Tastatur, auf Deutsch oder Englisch.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☎️</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Phone<span>words</span></h1>
+      <p class="lead">Welche Wörter stecken in deiner Telefonnummer? Wie bei <code>1-800-FLOWERS</code> – nur für deine Nummer.</p>
+    </header>
+
+    <form id="form" autocomplete="off">
+      <label for="number" class="sr-only">Telefonnummer</label>
+      <input id="number" type="tel" inputmode="tel" placeholder="z.B. 0176 4863 2867" autofocus>
+
+      <div class="controls">
+        <div class="seg" role="radiogroup" aria-label="Wörterbuch">
+          <button type="button" data-lang="de" aria-pressed="true">Deutsch</button>
+          <button type="button" data-lang="en" aria-pressed="false">English</button>
+        </div>
+        <label class="minlen">
+          Min. Wortlänge
+          <select id="minlen">
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+      </div>
+    </form>
+
+    <p id="status" class="status" aria-live="polite"></p>
+
+    <section id="combos-section" hidden>
+      <h2>Kombinationen</h2>
+      <p class="hint">Die ganze Nummer, mit möglichst vielen Ziffern als Wörter.</p>
+      <ol id="combos" class="combos"></ol>
+    </section>
+
+    <section id="words-section" hidden>
+      <h2>Einzelne Wörter</h2>
+      <p class="hint">Alle Wörter, die irgendwo in der Nummer vorkommen – längste zuerst.</p>
+      <ul id="words" class="words"></ul>
+    </section>
+
+    <details class="keypad-help">
+      <summary>Wie funktioniert das?</summary>
+      <p>Auf einer Telefontastatur gehören zu jeder Ziffer ein paar Buchstaben. Aus einer Ziffernfolge lassen sich so Wörter bilden. Umlaute liegen auf derselben Taste wie ihr Grundbuchstabe (Ä→2, Ö→6, Ü→8, ß→7). 0 und 1 haben keine Buchstaben.</p>
+      <div class="keypad" aria-hidden="true">
+        <div><b>1</b><small>&nbsp;</small></div>
+        <div><b>2</b><small>ABC</small></div>
+        <div><b>3</b><small>DEF</small></div>
+        <div><b>4</b><small>GHI</small></div>
+        <div><b>5</b><small>JKL</small></div>
+        <div><b>6</b><small>MNO</small></div>
+        <div><b>7</b><small>PQRS</small></div>
+        <div><b>8</b><small>TUV</small></div>
+        <div><b>9</b><small>WXYZ</small></div>
+        <div><b>*</b><small>&nbsp;</small></div>
+        <div><b>0</b><small>&nbsp;</small></div>
+        <div><b>#</b><small>&nbsp;</small></div>
+      </div>
+    </details>
+
+    <footer>
+      Alles läuft lokal in deinem Browser – die Nummer verlässt dein Gerät nicht.<br>
+      Wortlisten: <a href="https://github.com/hermitdave/FrequencyWords">FrequencyWords</a> (CC BY-SA 4.0, basierend auf OpenSubtitles).
+    </footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
