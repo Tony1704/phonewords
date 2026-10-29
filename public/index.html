@@ -7,10 +7,17 @@
   <meta name="description" content="Finde Wörter in deiner Telefonnummer – über die T9-Tastatur, auf Deutsch oder Englisch.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☎️</text></svg>">
   <link rel="stylesheet" href="style.css">
+  <script>
+    try {
+      const t = localStorage.getItem("phonewords.theme");
+      if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+    } catch {}
+  </script>
 </head>
 <body>
   <main>
     <header>
+      <button type="button" id="theme" class="theme-toggle" aria-label="Farbschema wechseln"></button>
       <h1>Phone<span>words</span></h1>
       <p class="lead">Welche Wörter stecken in deiner Telefonnummer? Wie bei <code>1-800-FLOWERS</code> – nur für deine Nummer.</p>
     </header>
@@ -71,7 +78,7 @@
 
     <footer>
       Alles läuft lokal in deinem Browser – die Nummer verlässt dein Gerät nicht.<br>
-      Wortlisten: <a href="https://github.com/hermitdave/FrequencyWords">FrequencyWords</a> (CC BY-SA 4.0, basierend auf OpenSubtitles).
+      Wortlisten: <a href="https://github.com/hermitdave/FrequencyWords">FrequencyWords</a> (CC BY-SA 4.0, basierend auf OpenSubtitles), gefiltert mit <a href="https://github.com/wooorm/dictionaries">Hunspell-Wörterbüchern</a>.
     </footer>
   </main>
   <script src="app.js"></script>

@@ -30,9 +30,14 @@ docker compose pull && docker compose up -d
 
 ## Wortlisten
 
-`public/words/{de,en}.txt` werden mit `scripts/build-wordlists.py` aus [FrequencyWords](https://github.com/hermitdave/FrequencyWords) erzeugt (CC BY-SA 4.0, basierend auf OpenSubtitles) – nach Häufigkeit sortiert, ein Wort pro Zeile.
+`public/words/{de,en}.txt` werden mit `scripts/build-wordlists.py` erzeugt, nach Häufigkeit sortiert, ein Wort pro Zeile (je 60.000 Wörter):
+
+- Häufigkeiten aus [FrequencyWords](https://github.com/hermitdave/FrequencyWords) (CC BY-SA 4.0, basierend auf OpenSubtitles)
+- Weil Untertitel voller Namen, Tippfehler und Fremdwörter sind, muss jedes Wort zusätzlich die Hunspell-Rechtschreibprüfung bestehen ([wooorm/dictionaries](https://github.com/wooorm/dictionaries)). Im Englischen zählen nur kleingeschriebene Einträge, damit Eigennamen rausfallen.
+- Wörter mit bis zu 3 Buchstaben nur, wenn sie häufig sind (sonst kommen Abkürzungen wie `fps` durch).
 
 ```bash
+pip install spylls
 python3 scripts/build-wordlists.py
 ```
 

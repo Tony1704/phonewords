@@ -190,6 +190,28 @@ function renderWords(digits, words) {
   $wordsSection.hidden = words.length === 0;
 }
 
+// Theme cycles auto -> light -> dark; "auto" follows the system setting.
+const THEMES = { auto: "◐ Auto", light: "☀︎ Hell", dark: "☾ Dunkel" };
+const $theme = document.getElementById("theme");
+
+function applyTheme(theme) {
+  if (theme === "auto") delete document.documentElement.dataset.theme;
+  else document.documentElement.dataset.theme = theme;
+  $theme.textContent = THEMES[theme];
+}
+
+$theme.addEventListener("click", () => {
+  const order = Object.keys(THEMES);
+  const current = document.documentElement.dataset.theme || "auto";
+  const next = order[(order.indexOf(current) + 1) % order.length];
+  applyTheme(next);
+  try {
+    if (next === "auto") localStorage.removeItem("phonewords.theme");
+    else localStorage.setItem("phonewords.theme", next);
+  } catch {}
+});
+applyTheme(document.documentElement.dataset.theme || "auto");
+
 let requestId = 0;
 
 async function update() {
